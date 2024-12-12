@@ -1,0 +1,48 @@
+
+
+            /* Mobile View Adjustments */
+            @media (max-width: 640px) {
+                h1 {
+                  font-size: 14vw;
+                  margin-top: 10vh;
+                }
+                h4 {
+                  top: 45vh;
+                  right: 2%;
+                  font-size: 2vh;
+                }
+                h3 {
+                  left: 20%;
+                  font-size: 2.4vh;
+                }
+                .timeline-container {
+                  position: absolute;
+                  width: 100%;
+                  top: 70%;
+                }
+              }
+  
+              @media (max-width: 480px) {
+                h1 {
+                  font-size: 50vw;
+                  margin-top: 8vh;
+                }
+                h4 {
+                  top: 42vh;
+                  font-size: 1.8vh;
+                  text-align: center;
+                  right: 0;
+                  left: 0;
+                  margin: auto;
+                }
+                h3 {
+                  left: 15%;
+                  font-size: 2.2vh;
+                  top: 28%;
+                }
+                .timeline-container {
+                  position: absolute;
+                  width: 100%;
+                  top: 75%;
+                }
+              }
