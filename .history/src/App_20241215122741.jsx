@@ -17,7 +17,11 @@ import './index.css';
 
 function App() {
   const audioRef = useRef(null);
-  const [isMusicPlaying, setIsMusicPlaying] = useState(false); // Set to false so music is paused initially
+  const [isMusicPlaying, setIsMusicPlaying] = useState(() => {
+    // Get music state from local storage or default to true
+    const savedState = localStorage.getItem('isMusicPlaying');
+    return savedState !== null ? JSON.parse(savedState) : true;
+  });
 
   const location = useLocation(); // Get current route
 
@@ -50,22 +54,20 @@ function App() {
     };
   }, [isMusicPlaying]);
 
-
-const toggleMusic = () => {
-  if (audioRef.current) {
-    if (isMusicPlaying) {  // If music is playing, pause it
-      audioRef.current.pause();
-    } else {  // If music is paused, play it
-      audioRef.current.play().catch((error) => {
-        console.error('Error playing audio:', error);
-      });
+  const toggleMusic = () => {
+    if (audioRef.current) {
+      if (isMusicPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play().catch((error) => {
+          console.error('Error playing audio:', error);
+        });
+      }
+      const newState = !isMusicPlaying;
+      setIsMusicPlaying(newState);
+      localStorage.setItem('isMusicPlaying', JSON.stringify(newState)); // Save state to local storage
     }
-    const newState = !isMusicPlaying;
-    setIsMusicPlaying(newState);
-    localStorage.setItem('isMusicPlaying', JSON.stringify(newState)); // Save state to local storage
-  }
-};
-
+  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -80,15 +82,15 @@ const toggleMusic = () => {
       <div className="fixed bottom-6 right-6 text-[2.5vh] z-50">
         <button
           onClick={toggleMusic}
-          className={`bg-transparent font-[font7] writing-vertical-rl text-center hover:text-default border-none shadow-none hover:shadow-none focus:outline-none ${
-            isMusicPlaying ? 'text-[#219B9D]' : 'text-yellow-500'
+          className={`bg-transparent font-[font7] writing-vertical-rl text-center hover:text-none border-none shadow-none hover:shadow-none focus:outline-none ${
+            isMusicPlaying ? 'text-yellow-500' : 'text-[#219B9D]'
           }`}
           style={{
             writingMode: 'vertical-rl',
             transform: 'rotate(360deg)',
           }}
         >
-          {isMusicPlaying ? 'Sound ON' : 'Sound OFF'}
+          {isMusicPlaying ? 'Sound OFF' : 'Sound ON'}
         </button>
       </div>
 

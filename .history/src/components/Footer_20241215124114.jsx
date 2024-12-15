@@ -72,7 +72,7 @@ function Footer() {
           </div>
           <div className="text-zinc-400 font-[font6] flex items-center gap-[13px] lg:pl-[0vh] md:pl-[5vh] mr-[23vw] lg:mr-0">
             <MdEmail className="mt-1 text-[2.5vh] text-[#0D7C66]" />
-            <a href="mailto:entctesa@gmail.com" className="text-[1.5vh] lg:text-[2vh]  cursor-pointer">entctesa@gmail.com</a>
+            <a href="mailto:tanayburbure@gmail.com" className="text-[1.5vh] lg:text-[2vh]  cursor-pointer">entctesa@gmail.com</a>
           </div>
         </div>
 

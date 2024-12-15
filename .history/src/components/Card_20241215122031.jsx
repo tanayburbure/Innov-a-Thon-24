@@ -25,7 +25,7 @@ function Card() {
     <div className="flex flex-col h-[40vh] lg:h-[50vh] items-center pt-12 lg:pt-12">
       <button
         className="bg-[#41B3A2] mb-8 font-[font6] text-[4.5vw] lg:text-[1.7vw] py-[3px] px-2 lg:py-[2px] lg:px-7 rounded-full border-[#41B3A2] text-zinc-900 font-bold"
-        onClick={() => (window.location.href = "/Registration")}
+        onClick={() => (window.location.href = "/register")}
       >
         Register Now
         <div className="star-1">

@@ -72,7 +72,7 @@ function Footer() {
           </div>
           <div className="text-zinc-400 font-[font6] flex items-center gap-[13px] lg:pl-[0vh] md:pl-[5vh] mr-[23vw] lg:mr-0">
             <MdEmail className="mt-1 text-[2.5vh] text-[#0D7C66]" />
-            <a href="mailto:entctesa@gmail.com" className="text-[1.5vh] lg:text-[2vh]  cursor-pointer">entctesa@gmail.com</a>
+            <h3 className="text-[1.5vh] lg:text-[2vh]  cursor-pointer">entctesa@gmail.com</h3>
           </div>
         </div>
 
@@ -84,7 +84,7 @@ function Footer() {
           <h3 className="text-center lg:text-left">All Rights Reserved © 2024</h3>
 
           {/* Wrap the button with an anchor tag for mailto */}
-          <a href="mailto:tanayburbure@gmail.com" className="px-4 py-[0.5px] text-zinc-500 text-[1.2vh] lg:text-[1.3vw] border border-black rounded-full bg-transparent text-sm lg:text-[2.2vh] lg:text-zinc-500">
+          <a href="mailto:developer@example.com" className="px-4 py-[0.5px] text-zinc-500 text-[1.2vh] lg:text-[1.3vw] border border-black rounded-full bg-transparent text-sm lg:text-[2.2vh] lg:text-zinc-500">
             contact developer
           </a>
 

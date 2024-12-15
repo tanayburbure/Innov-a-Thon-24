@@ -80,8 +80,8 @@ const toggleMusic = () => {
       <div className="fixed bottom-6 right-6 text-[2.5vh] z-50">
         <button
           onClick={toggleMusic}
-          className={`bg-transparent font-[font7] writing-vertical-rl text-center hover:text-default border-none shadow-none hover:shadow-none focus:outline-none ${
-            isMusicPlaying ? 'text-[#219B9D]' : 'text-yellow-500'
+          className={`bg-transparent font-[font7] writing-vertical-rl text-center hover:text-none border-none shadow-none hover:shadow-none focus:outline-none ${
+            isMusicPlaying ? 'text-yellow-500' : 'text-[#219B9D]'
           }`}
           style={{
             writingMode: 'vertical-rl',
