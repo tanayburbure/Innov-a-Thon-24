@@ -24,5 +24,5 @@ html,body{
 }
 @font-face {
     font-family: 'font15';
-    src: url('/Fonts/Legand.otf') format('opentype');
+    src: url('./Fonts/Legand.otf') format('opentype');
 }

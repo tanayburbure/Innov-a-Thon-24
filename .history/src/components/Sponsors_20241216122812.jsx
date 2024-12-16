@@ -1,19 +1,20 @@
 import React from "react";
-
+import programmerImage from "./public/images/programmer.png"; // Import the image
+er.png
 function Sponsors() {
   const sponsorImages = [
-    "/images/programmer.png",
-    "/images/programmer.png",
-    "/images/programmer.png",
-    "/images/programmer.png",
-    "/images/programmer.png",
-    "/images/programmer.png",
-    "/images/programmer.png",
-    "/images/programmer.png",
-    "/images/programmer.png",
-    "/images/programmer.png",
-    "/images/programmer.png",
-    "/images/programmer.png",
+    programmerImage,
+    programmerImage,
+    programmerImage,
+    programmerImage,
+    programmerImage,
+    programmerImage,
+    programmerImage,
+    programmerImage,
+    programmerImage,
+    programmerImage,
+    programmerImage,
+    programmerImage,
   ];
 
   return (
@@ -31,7 +32,7 @@ function Sponsors() {
             src={image}
             alt={`Sponsor Logo ${index + 1}`}
             style={{ transition: "transform 0.3s ease-in-out" }}
-            className="hover:scale-110 h-[12vh] lg:h-[11vw] rounded-lg shadow-md "
+            className="hover:scale-110 h-[12vh] lg:h-[11vw] rounded-lg shadow-md"
           />
         ))}
       </div>
