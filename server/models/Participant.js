@@ -4,11 +4,13 @@ const ParticipantSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    lowercase:true
   },
   email: {
     type: String,
     required: true,
     unique: true,
+    lowercase:true
   },
   age: {
     type: Number,
@@ -17,11 +19,13 @@ const ParticipantSchema = new mongoose.Schema({
   college: {
     type: String,
     required: true,
+    lowercase:true
   },
   gender: {
     type: String,
     enum: ['male', 'female', 'other'],
     required: true,
+    lowercase: true, 
   },
   mobile: {
     type: String,
@@ -39,12 +43,9 @@ const TeamSchema = new mongoose.Schema({
       message: 'A team must have exactly 4 participants.',
     },
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+},{timestamps:true});
 
 const Team = mongoose.model('Team', TeamSchema);
 
 module.exports = Team;
+
