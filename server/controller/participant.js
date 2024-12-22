@@ -1,5 +1,5 @@
 const express = require('express');
-const Team = require('../models/Participant'); 
+const Team = require('../models/Participant.models'); 
 const { TeamSchema } = require('../utils/validationSchama'); 
 
 // Controller to handle team registration

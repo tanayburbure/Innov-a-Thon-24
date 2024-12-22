@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDb = require('./models/dbConnect');
 const registerRouter = require('./routes/registration');
+const feedbackRoute = require('./routes/registration')
 
 // Load environment variables
 dotenv.config();
@@ -20,7 +21,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/v1/', registerRouter);
-// http://localhost:3000/api/v1/register
+app.use('/api/v1/', feedbackRoute);
+// http://localhost:3000/api/v1/feedback
 
 // Global Error Handler
 app.use((err, req, res, next) => {

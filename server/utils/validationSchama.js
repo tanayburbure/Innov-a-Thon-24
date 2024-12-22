@@ -18,4 +18,10 @@ const TeamSchema = z.object({
   createdAt: z.date().optional(), // Optional, as Mongoose sets a default value
 });
 
-module.exports = { ParticipantSchema, TeamSchema };
+const feedbackSchema = z.object({
+    name: z.string().min(1, "Name is required."),
+    email: z.string().email("Invalid email address."),
+    message:z.string().min(1, "Feedback is required."),
+  });
+
+module.exports = { ParticipantSchema, TeamSchema , feedbackSchema };

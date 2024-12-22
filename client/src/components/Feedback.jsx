@@ -1,6 +1,61 @@
-import React from 'react';
+import { useState } from 'react';
 
 function Feedback() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false); // State to track form submission status
+
+  // Handle changes in the form fields
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Call API to send data to the backend
+      const response = await fetch('http://localhost:3000/api/v1/feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert('Feedback stored successfully!');
+        // Reset the form after successful submission
+        setFormData({
+          name: '',
+          email: '',
+          message: '',
+        });
+      } else {
+        // Display validation errors or backend errors
+        alert(result.message || 'Failed to store feedback.');
+        console.error(result.errors || result.error);
+      }
+    } catch (error) {
+      console.error('Error while storing feedback:', error);
+      alert('An unexpected error occurred. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="h-[60vh] mt-16 text-white font-[font6] lg:h-[78vh] lg:mt-0 lg:pb-[10vh]">
       <div className="flex flex-col justify-center items-center gap-20 lg:gap-16">
@@ -8,7 +63,7 @@ function Feedback() {
           Send a Message
         </h2>
         <div className="w-[90vw] lg:w-[42%]">
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             {/* Name Field */}
             <div>
               <label htmlFor="name" className="block text-[1.5vh] font-medium text-gray-600">
@@ -18,8 +73,11 @@ function Feedback() {
                 type="text"
                 name="name"
                 id="name"
+                value={formData.name}
+                onChange={handleChange}
                 className="mt-1 py-1 w-full rounded-md border-gray-300 shadow-sm bg-[#C4DAD2] focus:ring-indigo-500 focus:border-indigo-500 pl-2"
                 placeholder="Your Name"
+                required
               />
             </div>
             {/* Email Field */}
@@ -31,8 +89,11 @@ function Feedback() {
                 type="email"
                 name="email"
                 id="email"
+                value={formData.email}
+                onChange={handleChange}
                 className="mt-1 py-1 w-full rounded-md border-gray-300 shadow-sm bg-[#C4DAD2] focus:ring-indigo-500 focus:border-indigo-500 pl-2"
                 placeholder="Your Email"
+                required
               />
             </div>
             {/* Message Field */}
@@ -44,16 +105,20 @@ function Feedback() {
                 id="message"
                 name="message"
                 rows="3"
+                value={formData.message}
+                onChange={handleChange}
                 className="mt-1 py-1 w-full rounded-md border-gray-300 shadow-sm bg-[#C4DAD2] focus:ring-indigo-500 focus:border-indigo-500 pl-2"
                 placeholder="Your Message"
+                required
               />
             </div>
             {/* Submit Button */}
             <button
               type="submit"
-              className="bg-[#0D7C66] py-1 px-2 border-none rounded-md text-black font-bold "
+              className="bg-[#0D7C66] py-1 px-2 border-none rounded-md text-black font-bold"
+              disabled={isSubmitting} // Disable button while submitting
             >
-              Send
+              {isSubmitting ? 'Sending...' : 'Send'}
             </button>
           </form>
         </div>
