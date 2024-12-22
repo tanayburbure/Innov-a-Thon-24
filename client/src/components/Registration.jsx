@@ -5,7 +5,8 @@ const Registration = () => {
     { name: '', email: '', age: '', college: '', gender: '', mobile: '' }, 
     { name: '', email: '', age: '', college: '', gender: '', mobile: '' }, 
     { name: '', email: '', age: '', college: '', gender: '', mobile: '' }, 
-    { name: '', email: '', age: '', college: '', gender: '', mobile: '' }]);
+    { name: '', email: '', age: '', college: '', gender: '', mobile: '' }
+  ]);
 
   const handleChange = (index, event) => {
     const newParticipants = [...participants];
@@ -13,10 +14,42 @@ const Registration = () => {
     setParticipants(newParticipants);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(participants);
-    // Here you can add functionality to send the data to a server or handle it as needed
+
+    // Prepare the data for the API request
+    const teamData = {
+      participants: participants.map(participant => ({
+        name: participant.name,
+        email: participant.email,
+        age: parseInt(participant.age, 10),
+        college: participant.college,
+        gender: participant.gender,
+        mobile: participant.mobile,
+      }))
+    };
+
+    try {
+      const response = await fetch("http://localhost:3000/api/v1/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(teamData), // Send the team data as a JSON string
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log("Registration successful:", result);
+        // You can redirect the user or show a success message here
+      } else {
+        console.error("Error registering team:", result);
+        // Handle any errors here
+      }
+    } catch (error) {
+      console.error("Error during the API request:", error);
+    }
   };
 
   return (
@@ -85,7 +118,7 @@ const Registration = () => {
             />
           </div>
         ))}
-        <button type="submit" style={styles.button}>Procced to Pay</button>
+        <button type="submit" style={styles.button}>Register</button>
       </form>
     </div>
   );

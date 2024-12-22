@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function Timeline() {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
@@ -9,7 +9,7 @@ function Timeline() {
   }, []);
 
   function calculateTimeLeft() {
-    const eventDate = new Date("2024-12-22T12:00:00");
+    const eventDate = new Date("2024-12-24T12:00:00");
     const difference = eventDate - new Date();
 
     if (difference > 0) {
